@@ -1,31 +1,27 @@
 class Photo {
 	constructor(id, file, title, caption, favorite) {
-		this.id = this.dataset;
+		this.id = id;
 		this.file = file;
 		this.title = title;
 		this.caption = caption;
-		this.favorite = favorite;
+		this.favorite = favorite || false;
 	}
 
-	saveToStorage() {
-		localStorage.setItem("arrayCards", JSON.stringify(arrayCards));
+	saveToStorage(array) {
+		localStorage.setItem("photos", JSON.stringify(imagesArr));
 	}
 
-	deleteFromStorage() {
-		arrayCards.splice(index, 1);
-		this.saveToStorage(arrayCards);
+	deleteFromStorage(index, array) {
+		imagesArr.splice(index, 1);
+		this.saveToStorage(imagesArr);
 	}
 
-	updatePhoto(input, type) {
-		if (type === 'file') {
-			this.file = file;
-		}
-		if (type === 'title') {
-			this.title = title;
-		}
-		if (type === 'caption') {
-			this.caption = caption;
-		}
+	static updatePhoto(index, type, newContent) {
+		imagesArr.forEach(function(image) {
+			if (image.id === index) {
+				image[type] = newContent;
+			}
 		this.saveToStorage(input, type);
+		});
 	}
 }
