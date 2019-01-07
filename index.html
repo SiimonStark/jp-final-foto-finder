@@ -15,35 +15,27 @@
 			FINDER
 		</h1>
 		<form class="header__search">
-			<input class="search__input" type="text" name="search" placeholder="Search">
+			<input class="search__input" type="text" placeholder="Search">
 			<button class="search__button" disabled=""><i class="fas fa-search font--color"></i></button>
 		</form>
 	</header>
 	<form class="submit-photo">
 		<fieldset class="submit__field">
 			<label class="field__label">Title</label>
-			<input id="input-title" class="field__input" type="text" name="title">
+			<input id="input-title" class="field__input" type="text">
 			<label class="field__label">Caption</label>
-			<input id="input-caption" class="field__input" type="text" name="caption">
+			<input id="input-caption" class="field__input" type="text">
 			<label id="add-file" class="label__file" for="file">Choose a file</label>
-			<input class="field__file font--color" id="file" type="file" name="file">
-			<div class="btn__container">
-				<input id="fav" class="field__button font--color" type="button" name="see-favorites" value="View 1 Favorites">
-				<input id="create" class="field__button font--color" type="button" name="see-favorites" value="Add to Album">
-			</div>
+			<input class="field__file font--color" id="file" type="file">
+			<section class="btn__container">
+				<input id="fav" class="field__button font--color" type="button" value="View 1 Favorites">
+				<input id="create" class="field__button font--color" type="button" value="Add to Album">
+			</section>
 		</fieldset>
 	</form>
 	<section class="album">
 		<section class="album__cards">
-			<article class="album__photo" id="card" data-id=`${cardId}` data-title=`${inTitle.innerHTML}` data-caption=`${incaption.innerHTML}` data-file=`${inFile.file}` data-quality=`${quality}`>
-				<h3>${title}</h3>
-				<img class="img__file" src="imgs/test.gif">
-				<p>${caption} Lots of text goes here so that image can be described precisely and accurately. With much precision comes great responsibility.</p>
-				<div class="photo__icon--container">
-					<img class="photo__icon" src="resources/delete.svg">
-					<img class="photo__icon" src="resources/favorite.svg">
-				</div>
-			</article>
+			<!-- Photo Cards Go HERE -->
 		</section>
 	</section>
 	<script src="photo.js"></script>
