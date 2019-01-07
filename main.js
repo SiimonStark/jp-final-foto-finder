@@ -46,7 +46,7 @@ function addPhoto(e) {
   var newImage = new Photo(id, e.target.result, inTitle.value, inCaption.value);
   imagesArr.push(newImage);
   newImage.saveToStorage(imagesArr);
-  newPhoto(Photo);
+  newPhoto(newImage);
 }
 
 function newPhoto(obj) {
