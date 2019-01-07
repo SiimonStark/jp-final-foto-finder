@@ -23,14 +23,14 @@ create.addEventListener('click', createElement);
 albumField.addEventListener('click',queBtn)
 
 
-// ============Functions========================
+// =====================Functions===========================
 // *********************************************************
 function appendPhotos() {
   // imagesArr = [];
-  imagesArr.forEach(function (obj) {
+  imagesArr.forEach(function (photo) {
+    var obj = new Photo(photo.id, photo.file, photo.title, photo.caption);
     newPhoto(obj);
-    var obj = new Photo(obj.id, obj.file, obj.title, obj.caption);
-    imagesArr.push(obj);
+    // imagesArr.push(obj);
   });
 }
 
