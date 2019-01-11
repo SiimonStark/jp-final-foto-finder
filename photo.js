@@ -11,12 +11,12 @@ class Photo {
 		localStorage.setItem("photos", JSON.stringify(imagesArr));
 	}
 
-	deleteFromStorage(index, array) {
+	deleteFromStorage(imagesArr, index) {
 		imagesArr.splice(index, 1);
 		this.saveToStorage(imagesArr);
 	}
 
-	static updatePhoto(index, type, newContent) {
+	updatePhoto(index, type, newContent) {
 		imagesArr.forEach(function(image) {
 			if (image.id === index) {
 				image[type] = newContent;
@@ -24,4 +24,11 @@ class Photo {
 		this.saveToStorage(input, type);
 		});
 	}
+
+	favoritePhoto(imagesArr, index) {
+		console.log(imagesArr)
+		
+		this.saveToStorage(imagesArr);
+	}
+
 }

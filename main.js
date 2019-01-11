@@ -12,26 +12,35 @@ var albumField = document.querySelector(".album__cards");
 // ##MISC
 var imagesArr = JSON.parse(localStorage.getItem("photos")) || [];
 var reader = new FileReader();
+// ##Global Variable
+var favCnt = 0;
 
 
 // ====================Event Listeners======================
 // *********************************************************
-window.addEventListener('load', appendPhotos);
-// window.addEventListener('input', enableBtn);
-// inSearch.addEventListener('input', searchAlbum);
+window.addEventListener('load', appendPhotos(imagesArr));
+window.addEventListener('input', enableSave);
+inSearch.addEventListener('input', searchAlbum);
 create.addEventListener('click', createElement);
 albumField.addEventListener('click',queBtn)
+fave.addEventListener('click', )
 
 
-// ============Functions========================
+// =====================Functions===========================
 // *********************************************************
-function appendPhotos() {
-  // imagesArr = [];
-  imagesArr.forEach(function (obj) {
-    newPhoto(obj);
-    var obj = new Photo(obj.id, obj.file, obj.title, obj.caption);
+function enableSave(){
+  if (inTitle.value !== "" && inCaption.value !== ""){
+    create.disabled = false;
+  }
+}
+
+function appendPhotos(array) {
+  imagesArr = [];
+  array.forEach(function (photo) {
+    newPhoto(photo);
+    var obj = new Photo(photo.id, photo.file, photo.title, photo.caption, photo.favorite);
     imagesArr.push(obj);
-  });
+});
 }
 
 function createElement(e) {
@@ -50,37 +59,75 @@ function addPhoto(e) {
 }
 
 function newPhoto(obj) {
-    albumField.insertAdjacentHTML('afterbegin',
-  `<article class="album__photo" id="${obj.id}">
+  console.log(obj)
+  albumField.insertAdjacentHTML('afterbegin',
+    `<article class="album__photo" id="${obj.id}">
     <h3>${obj.title}</h3>
     <img class="img__file" src="${obj.file}">
     <p>${obj.caption}</p>
     <div class="photo__icon--container">
-      <img id="delete" class="kill photo__icon" src="resources/delete.svg">
-      <img id="heart" class="love photo__icon" src="resources/favorite.svg">
+    <img id="delete" class="kill photo__icon" src="resources/delete.svg">
+    <img id="heart" class="love ${obj.favorite} photo__icon" src="${obj.favorite ? 'resources/favorite-active.svg' : 'resources/favorite.svg'}">
     </div>
-  </article>`);
+    </article>`);
 }
 
 function queBtn(e) {
   e.preventDefault();
   var photoId = parseInt(e.target.parentElement.parentElement.id);
-  // var index = imagesArr.findIndex(photo => photo.id === imageId);
-  var btnToCLick = e.target.className;
-
+  var thisTarget = e.target
+  console.log(thisTarget)
+  // 
+  console.log(photoId);
+  // 
+  var index = imagesArr.findIndex(function(photo) {
+    return photo.id === photoId;
+  });
+  if (e.target.classList.contains('kill')){
+    deleteCard(index);
+  }
+  if (e.target.classList.contains('love')){
+    likeCard(index, thisTarget);
+  }
 }
 
-// function deleteCard(index, imageId) {
-//       imagesArr[index].deleteFromStorage(index, imagesArr);
-//       var card = document.getElementById(imageId);
-//       card.remove();
-// }
+function deleteCard(index) {
+  imagesArr[index].deleteFromStorage(imagesArr, index);
+  event.target.closest('.album__photo').remove();
+}
 
-// function likeCard(index, imageId, name) {
-//   if (name === "heart") {
-//     e.target.classList.add(" liked");
-//     imagesArr[index].updateCard();
+function likeCard(index, thisTarget) {
+
+ if (imagesArr[index].favorite === false){
+  thisTarget.src="resources/favorite-active.svg";
+  imagesArr[index].favorite = true;
+  favCnt++;
+ } else if (imagesArr[index].favorite === true){
+  thisTarget.src="resources/favorite.svg";
+  imagesArr[index].favorite = false;
+  FavCnt--;
+ }
+ imagesArr[index].favoritePhoto(imagesArr, index);
+}
+
+function searchAlbum() {
+  var search = inSearch.value.toUpperCase();
+  var filtered = imagesArr.filter(function(imageArr){
+    var titleSearch = imageArr.title.toUpperCase();
+  var captionSearch = imageArr.caption.toUpperCase();
+return titleSearch.includes(search) || captionSearch.includes(search);
+});
+  albumField.innerHTML = '';
+filtered.forEach(function(filtCard) {
+  console.log(filtCard)
+  newPhoto(filtCard)
+})
+}
+
+// searchForLove() {
+//   if (heart.classList === "super-love"){
+//     var filteredForLove = imagesArr.filter(function(imageArr)) {
+
+// }
 //   }
 // }
-
-
