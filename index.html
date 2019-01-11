@@ -9,31 +9,31 @@
 	<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-	<header>
+	<header class="flex">
 		<h1 class="font--color">FOTO
 			<img class="header__camera" src="resources/foto-finder-logo.svg">
 			FINDER
 		</h1>
-		<form class="header__search">
+		<form class="header__search flex">
 			<input class="search__input" type="text" placeholder="Search">
 			<button class="search__button" disabled=""><i class="fas fa-search font--color"></i></button>
 		</form>
 	</header>
-	<form class="submit-photo">
-		<fieldset class="submit__field">
+	<form class="submit-photo flex">
+		<fieldset class="submit__field flex">
 			<label class="field__label">Title</label>
 			<input id="input-title" class="field__input" type="text">
 			<label class="field__label">Caption</label>
 			<input id="input-caption" class="field__input" type="text">
 			<label id="add-file" class="label__file" for="file">Choose a file</label>
 			<input class="field__file font--color" id="file" type="file" accept=“png/jpeg/svg”>
-			<section class="btn__container">
-				<input id="fav" class="field__button font--color" type="button" value="View 1 Favorites">
+			<section class="btn__container flex">
+				<input id="fav" class="field__button font--color" type="button" value="View Favorites">
 				<input id="create" class="field__button font--color" type="button" value="Add to Album" disabled="true">
 			</section>
 		</fieldset>
 	</form>
-	<section class="album__cards">
+	<section class="album__cards flex">
 		<!-- Photo Cards Go HERE -->
 	</section>
 	<script src="photo.js"></script>

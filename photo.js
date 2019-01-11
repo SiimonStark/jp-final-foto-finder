@@ -16,19 +16,17 @@ class Photo {
 		this.saveToStorage(imagesArr);
 	}
 
-	updatePhoto(index, type, newContent) {
-		imagesArr.forEach(function(image) {
-			if (image.id === index) {
-				image[type] = newContent;
-			}
-		this.saveToStorage(input, type);
-		});
-	}
-
-	favoritePhoto(imagesArr, index) {
-		console.log(imagesArr)
-		
+	updatePhoto(type, text) {
+		if (type === "title") {
+			this.title = text;
+		}
+		if (type === "caption") {
+			this.caption = text;
+		}
 		this.saveToStorage(imagesArr);
 	}
 
+	favoritePhoto(imagesArr) {
+		this.saveToStorage(imagesArr);
+	}
 }
