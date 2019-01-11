@@ -38,7 +38,6 @@ h1 {
 	grid-auto-columns: 75% 15%;
 	grid-template-areas: 
 	"input btn";
-	width: 30%;
 }
 
 .search__input {
@@ -54,9 +53,9 @@ h1 {
 	background-color: #c1b2b4;
 	grid-area: btn;
 	height: 31px;
-	margin-left: 15px;
+	/*margin-left: 15px;*/
 	padding: 0;
-	width: 100%;
+	width: 50px;
 }
 
 /* ~~~~~~~~~Submit-Photo~~~~~~~~~ */
@@ -110,6 +109,11 @@ label {
 	width: 40%;
 }
 
+.label__file:hover,
+.field__button:hover {
+	background-color: #938284;
+}
+
 .field__file {
 	display: none;
 }
@@ -121,25 +125,21 @@ label {
 
 /* ~~~~~~~~~~~~Album~~~~~~~~~~~~~ */
 /* ============================== */
-.album {
-	display: flex;
-	height: 100%;
-	padding: 30px 50px;
-}
-
 .album__cards {
-	justify-content: center;
-	display: grid;
-	grid-gap: 30px;
-	grid-template: repeat(4, 405px) / repeat(4, 300px);
+	display: flex;
+	flex-wrap: wrap;
 	height: 100%;
-	width: 100%;
+	justify-content: flex-start;
+	margin: 15px 6.5%;
+	width: 92%;
 }
 
 .album__photo {
 	background-color: #fff;
-	border: 2px solid #5b4447;
+	border: 2px solid #938284;
 	height: 400px;
+	margin: 15px;
+	min-width: 280px;
 	width: 280px;
 }
 
@@ -153,6 +153,11 @@ p,
 .img__file {
 	height: 206px;
 	width: 100%;
+}
+
+h3,
+p {
+	color: #3E2A35;
 }
 
 p {
@@ -177,14 +182,39 @@ p {
 /* ============================== */
 @media screen and (min-width: 1360px) {
 	.album__cards {
-		grid-template: repeat(4, 405px) / repeat(5, 300px);
+
 	}
 }
-@media screen and (max-width: 420px) {
-
+@media screen and (max-width: 690px) {
+	header {
+		flex-direction: column;
+	}
+	h1 {
+		font-size: ;
+		margin-bottom: 20px;
+	}
+	.header__search {
+		/*margin-left: 3%;*/
+		min-width: 260px;
+		/*width: 56.5%;*/
+		display: flex;
+	justify-content: flex-start;
+	width: 85%;
+	}
+	.album__cards {
+	margin: 15px 1%;
+	}
+	.field__button {
+		width: 48%;
+	}
+	.submit__field {
+		width: 80%;
+	}
 }
-@media screen and (max-width: 420px) {
-
+@media screen and (max-width: 682px) {
+	.album__cards {
+		justify-content: center;
+	}
 }
 @media screen and (max-width: 420px) {
 
